@@ -12,6 +12,7 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
       Element? element, ConstantReader annotation, BuildStep buildStep) {
     if (element == null) return null;
     var visitor = ModelVisitor();
+    element.visitChildren(visitor);
     var isRoot = visitor.mapFields["isRoot"];
 
     if (element.kind == ElementKind.CLASS && element.name != null) {
