@@ -11,16 +11,11 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
   generateForAnnotatedElement(
       Element? element, ConstantReader annotation, BuildStep buildStep) {
     if (element == null) return null;
-
-
     if (element.kind == ElementKind.CLASS && element.name != null) {
-
       var className = "${element.name!}";
       var ref = StringUtils.camelCaseToLowerUnderscore(className);
-
       if (listRefs.contains(ref)) return null;
-      listRefs.add(
-          "\$${className}Generator()");
+      listRefs.add("\$${className}Generator()");
       return """
 import 'package:flutter/material.dart';
 import '../../../../app/presentation/router/app_route_generator.dart';
