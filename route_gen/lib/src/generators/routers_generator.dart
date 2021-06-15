@@ -27,12 +27,12 @@ import '${ref}.dart';
           
 class \$${className}Generator implements RouteGenerator {
   String routeName = \"$ref\";
-  
+  bool? isRoot = $isRoot;
   @override
   Route? onGenerateRoute(RouteSettings settings) {
     if (settings.name == routeName) {
       return MaterialPageRoute(
-          settings: settings, builder: (context) => ${className}());
+          settings: settings, builder: (context) => ${className}(isRoot:$isRoot));
     }
     return null;
   }
