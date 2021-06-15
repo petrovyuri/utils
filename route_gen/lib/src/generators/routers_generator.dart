@@ -34,7 +34,7 @@ class \$${className}Generator implements RouteGenerator {
   Route? onGenerateRoute(RouteSettings settings) {
     if (settings.name == routeName) {
       return MaterialPageRoute(
-          settings: settings, builder: (context) => ${className}());
+          settings: settings, builder: (context) => ${className}(isRoot:false));
     }
     return null;
   }
