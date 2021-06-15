@@ -1,5 +1,4 @@
 class Routed {
-  const Routed();
+  final bool? isRoot;
+  const Routed({this.isRoot});
 }
-
-const routed = Routed();
