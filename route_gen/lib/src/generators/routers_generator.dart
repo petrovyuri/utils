@@ -28,6 +28,9 @@ import '${ref}.dart';
 class \$${className}Generator implements RouteGenerator {
   String routeName = \"$ref\";
   bool? isRoot = $isRoot;
+  
+  \$FeedbackScreenGenerator({this.isRoot});
+  
   @override
   Route? onGenerateRoute(RouteSettings settings) {
     if (settings.name == routeName) {
