@@ -14,6 +14,7 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
     if (element.kind == ElementKind.CLASS && element.name != null) {
       var className = "${element.name!}";
       var ref = StringUtils.camelCaseToLowerUnderscore(className);
+
       if (listRefs.contains(ref)) return null;
       listRefs.add("\$${className}Generator()");
       return """
