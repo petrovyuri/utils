@@ -1,4 +1,5 @@
 class Routed {
-  final bool? isRoot;
-  const Routed({this.isRoot});
+  const Routed();
 }
+
+const routeGenInit = Routed();
