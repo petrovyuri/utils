@@ -2,4 +2,4 @@ class Routed {
   const Routed();
 }
 
-const routeGenInit = Routed();
+const routed = Routed();
