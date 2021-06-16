@@ -8,8 +8,6 @@ import 'package:source_gen/source_gen.dart';
 import 'data.dart';
 
 class RoutersGenerator extends GeneratorForAnnotation<Routed> {
-
-
   @override
   generateForAnnotatedElement(
       Element? element, ConstantReader annotation, BuildStep buildStep) {
@@ -17,13 +15,15 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
     if (element.kind == ElementKind.CLASS && element.name != null) {
       var className = "${element.name!}";
       var package = buildStep.inputId.package;
-      var path = buildStep.inputId.path;
-      var importRef = path.replaceAll("lib", package);
-      var importResult = "import:\"$importRef\";\n";
+      var generatorName = "${className}Generator()";
+      var pathSource = buildStep.inputId.path;
+      pathSource.replaceAll("lib", package);
+      pathSource.replaceAll(className, generatorName);
+      var importResult = "import:package/\"$pathSource\";\n";
       DataGen.listPaths.add(importResult);
       var ref = StringUtils.camelCaseToLowerUnderscore(className);
       if (DataGen.listRefs.contains(ref)) return null;
-      DataGen.listRefs.add("\$${className}Generator()");
+      DataGen.listRefs.add(generatorName);
       return """
 import 'package:flutter/material.dart';
 import '../../../../app/presentation/router/app_route_generator.dart';
