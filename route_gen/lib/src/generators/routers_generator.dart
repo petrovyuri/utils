@@ -2,10 +2,11 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:basic_utils/basic_utils.dart';
 import 'package:build/src/builder/build_step.dart';
 import 'package:route_gen/src/annotation/routed.dart';
+import 'package:route_gen/src/generators/init_routers_generator.dart';
 import 'package:source_gen/source_gen.dart';
 
 class RoutersGenerator extends GeneratorForAnnotation<Routed> {
-  static List<String> listRefs = [];
+
 
   @override
   generateForAnnotatedElement(
@@ -14,8 +15,8 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
     if (element.kind == ElementKind.CLASS && element.name != null) {
       var className = "${element.name!}";
       var ref = StringUtils.camelCaseToLowerUnderscore(className);
-      if (listRefs.contains(ref)) return null;
-      listRefs.add("\$${className}Generator()");
+      if (InitGenerator.listRefs.contains(ref)) return null;
+      InitGenerator.listRefs.add("\$${className}Generator()");
       return """
 import 'package:flutter/material.dart';
 import '../../../../app/presentation/router/app_route_generator.dart';

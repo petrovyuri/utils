@@ -6,10 +6,13 @@ import 'package:source_gen/source_gen.dart';
 
 
 class InitGenerator extends GeneratorForAnnotation<RouteGenInit> {
+  static List<String> listRefs = [];
+
+
   @override
   generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
-    return resultClass(RoutersGenerator.listRefs);
+    return resultClass(listRefs);
   }
 }
 

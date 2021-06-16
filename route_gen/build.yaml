@@ -1,3 +1,17 @@
+targets:
+  $default:
+    builders:
+      route_gen|generateRouters:
+        options: { 'write': true }
+        enabled: true
+        generate_for:
+          include: ['**.gen.dart']
+      route_gen|initRoutes:
+        options: { 'write': true }
+        enabled: true
+        generate_for:
+          include: ['**.init.dart']
+
 builders:
   generateRouters:
     import: "package:route_gen/builder.dart"
