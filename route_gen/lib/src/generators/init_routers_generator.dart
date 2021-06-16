@@ -2,7 +2,6 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:build/src/builder/build_step.dart';
 import 'package:route_gen/src/annotation/route_gen_init.dart';
 import 'package:route_gen/src/data.dart';
-import 'package:route_gen/src/generators/routers_generator.dart';
 import 'package:source_gen/source_gen.dart';
 
 class InitGenerator extends GeneratorForAnnotation<RouteGenInit> {
@@ -23,7 +22,7 @@ ${DataGen.listImports.join()}
 import 'app_route_generator.dart';
 
 class \$AppRouteGenerator extends RouteGenerator {
-  final generators = ${list ?? []};
+  final generators = ${list};
 
   Route? onGenerateRoute(RouteSettings settings) {
     logJust(
