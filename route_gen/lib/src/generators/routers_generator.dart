@@ -5,6 +5,8 @@ import 'package:route_gen/src/annotation/routed.dart';
 import 'package:route_gen/src/generators/init_routers_generator.dart';
 import 'package:source_gen/source_gen.dart';
 
+import 'data.dart';
+
 class RoutersGenerator extends GeneratorForAnnotation<Routed> {
 
 
@@ -14,9 +16,11 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
     if (element == null) return null;
     if (element.kind == ElementKind.CLASS && element.name != null) {
       var className = "${element.name!}";
+      var path = buildStep.inputId.path;
+      DataGen.listPaths.add(path);
       var ref = StringUtils.camelCaseToLowerUnderscore(className);
-      if (InitGenerator.listRefs.contains(ref)) return null;
-      InitGenerator.listRefs.add("\$${className}Generator()");
+      if (DataGen.listRefs.contains(ref)) return null;
+      DataGen.listRefs.add("\$${className}Generator()");
       return """
 import 'package:flutter/material.dart';
 import '../../../../app/presentation/router/app_route_generator.dart';
