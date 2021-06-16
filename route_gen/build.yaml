@@ -5,12 +5,12 @@ targets:
         options: { 'write': true }
         enabled: true
         generate_for:
-          include: ['**.gen.dart']
+          exclude: ['**.gen.dart']
       route_gen|initRoutes:
         options: { 'write': true }
         enabled: true
         generate_for:
-          include: ['**.init.dart']
+          exclude: ['**.init.dart']
 
 builders:
   generateRouters:
