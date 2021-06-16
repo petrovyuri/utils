@@ -16,7 +16,7 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
     if (element == null) return null;
     if (element.kind == ElementKind.CLASS && element.name != null) {
       var className = "${element.name!}";
-      var path = buildStep.inputId.path;
+      var path = buildStep.inputId.package;
       DataGen.listPaths.add(path);
       var ref = StringUtils.camelCaseToLowerUnderscore(className);
       if (DataGen.listRefs.contains(ref)) return null;
