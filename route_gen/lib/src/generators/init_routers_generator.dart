@@ -5,7 +5,6 @@ import 'package:route_gen/src/data.dart';
 import 'package:route_gen/src/generators/routers_generator.dart';
 import 'package:source_gen/source_gen.dart';
 
-
 class InitGenerator extends GeneratorForAnnotation<RouteGenInit> {
   @override
   generateForAnnotatedElement(
@@ -18,6 +17,8 @@ String resultClass(List list) {
   return """
 import 'package:app_logger/app_logger.dart';
 import 'package:flutter/material.dart';
+
+${DataGen.listImports.join()}
 
 import 'app_route_generator.dart';
 
@@ -39,11 +40,7 @@ class \$AppRouteGenerator extends RouteGenerator {
   }
 }
 
-
-${
-      DataGen.listRoutes.join()
-  }
-  
-  
+${DataGen.listRoutes.join()}
+ 
   """;
 }
