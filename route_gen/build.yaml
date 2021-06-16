@@ -1,28 +1,14 @@
-targets:
-  $default:
-    builders:
-      route_gen|generateRouters:
-
-        enabled: true
-        generate_for:
-          include: ['.gen.dart']
-      route_gen|initRoutes:
-
-        enabled: true
-        generate_for:
-          include: ['.init.dart']
-
 builders:
   generateRouters:
     import: "package:route_gen/builder.dart"
     builder_factories: ["generateRouters"]
     build_extensions: {".dart": ['.gen.dart']}
     auto_apply: dependents
-    build_to: source
+    build_to: cache
     runs_before: ['route_gen|init_routers_generator']
   initRoutes:
     import: "package:route_gen/builder.dart"
     builder_factories: ["initRoutes"]
     build_extensions: {".dart": ['.init.dart']}
     auto_apply: dependents
-    build_to: source
+    build_to: cache
