@@ -19,10 +19,6 @@ String resultClass(List list) {
 import 'package:app_logger/app_logger.dart';
 import 'package:flutter/material.dart';
 
-${
-      DataGen.listImports.join()
-  }
-
 import 'app_route_generator.dart';
 
 class \$AppRouteGenerator extends RouteGenerator {

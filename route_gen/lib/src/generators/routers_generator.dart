@@ -22,15 +22,11 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
       var generatorName = "\$${className}Generator()";
       var pathSource = buildStep.inputId.path;
       var pathResult = pathSource.replaceAll("lib", "../../..");
-      pathResult = pathResult.replaceAll(underScoreName, "$underScoreName.gen");
       var importResult = "import \"$pathResult\";\n";
       DataGen.listImports.add(importResult);
       DataGen.listGenerators.add(generatorName);
       DataGen.listRoutes.add(
           """
-import 'package:flutter/material.dart';
-import '../../../../app/presentation/router/app_route_generator.dart';
-import '${underScoreName}.dart';
           
 class \$${className}Generator implements RouteGenerator {
   String routeName = \"$underScoreName\";
@@ -44,8 +40,7 @@ class \$${className}Generator implements RouteGenerator {
     return null;
   }
 }
-      
-    """
+"""
       );
       return null;
     }
