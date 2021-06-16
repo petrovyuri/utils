@@ -24,4 +24,3 @@ builders:
     build_extensions: {".dart": ['.init.dart']}
     auto_apply: dependents
     build_to: source
-    apply_builders: ["route_gen|routers_generator"]
