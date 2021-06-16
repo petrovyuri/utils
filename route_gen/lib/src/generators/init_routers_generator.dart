@@ -12,12 +12,12 @@ class InitGenerator extends GeneratorForAnnotation<RouteGenInit> {
   @override
   generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
-    listRefs.clear();
     return resultClass(listRefs);
   }
 }
 
 String resultClass(List list) {
+  InitGenerator.listRefs.clear();
   return """
 import 'package:app_logger/app_logger.dart';
 import 'package:flutter/material.dart';
