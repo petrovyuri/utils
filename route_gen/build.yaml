@@ -4,13 +4,9 @@ targets:
       route_gen|generateRouters:
         options: { 'write': true }
         enabled: true
-        generate_for:
-          exclude: ['**.gen.dart']
       route_gen|initRoutes:
         options: { 'write': true }
         enabled: true
-        generate_for:
-          exclude: ['**.init.dart']
 
 builders:
   generateRouters:
