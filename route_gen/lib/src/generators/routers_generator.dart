@@ -19,8 +19,8 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
       var generatorName = "\$${className}Generator()";
       var pathSource = buildStep.inputId.path;
       var pathResult = pathSource.replaceAll("lib", "../../../");
-      pathResult = pathResult.replaceAll(underScoreName, "$pathResult.gen");
-      var importResult = "import:\"$pathResult\";\n";
+      pathResult = pathResult.replaceAll(underScoreName, "$underScoreName.gen");
+      var importResult = "import \"$pathResult\";\n";
       DataGen.listPaths.add(importResult);
       DataGen.listRefs.add(generatorName);
       return """
