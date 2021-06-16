@@ -18,7 +18,7 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
       var underScoreName = StringUtils.camelCaseToLowerUnderscore(className);
       var generatorName = "\$${className}Generator()";
       var pathSource = buildStep.inputId.path;
-      var pathResult = pathSource.replaceAll("lib", "../../../");
+      var pathResult = pathSource.replaceAll("lib", "../../..");
       pathResult = pathResult.replaceAll(underScoreName, "$underScoreName.gen");
       var importResult = "import \"$pathResult\";\n";
       DataGen.listPaths.add(importResult);
