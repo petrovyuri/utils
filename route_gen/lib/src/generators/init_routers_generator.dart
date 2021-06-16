@@ -23,7 +23,7 @@ import 'package:app_logger/app_logger.dart';
 import 'package:flutter/material.dart';
 
 ${
-      DataGen.listPaths.map((e) => "$e\n")
+      DataGen.listPaths.join()
   }
 
 import 'app_route_generator.dart';
