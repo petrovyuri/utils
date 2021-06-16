@@ -12,6 +12,7 @@ class InitGenerator extends GeneratorForAnnotation<RouteGenInit> {
   @override
   generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
+    listRefs.clear();
     return resultClass(listRefs);
   }
 }
