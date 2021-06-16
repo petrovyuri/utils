@@ -19,7 +19,7 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
       var package = buildStep.inputId.package;
       var path = buildStep.inputId.path;
       var importRef = path.replaceAll("lib", package);
-      var importResult = "import:$importRef;";
+      var importResult = "import:\"$importRef\";";
       DataGen.listPaths.add(importResult);
       var ref = StringUtils.camelCaseToLowerUnderscore(className);
       if (DataGen.listRefs.contains(ref)) return null;
