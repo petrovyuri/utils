@@ -5,7 +5,7 @@ import 'package:route_gen/src/annotation/routed.dart';
 import 'package:route_gen/src/generators/init_routers_generator.dart';
 import 'package:source_gen/source_gen.dart';
 
-import 'data.dart';
+import '../data.dart';
 
 class RoutersGenerator extends GeneratorForAnnotation<Routed> {
   @override
@@ -13,7 +13,10 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
       Element? element, ConstantReader annotation, BuildStep buildStep) {
     if (element == null) return null;
     if (element.kind == ElementKind.CLASS && element.name != null) {
-
+      var routeAnnotation = annotation.peek("route")!.stringValue;
+      if(routeAnnotation.isNotEmpty){
+        // Что то сделать.
+      }
       var className = "${element.name!}";
       var underScoreName = StringUtils.camelCaseToLowerUnderscore(className);
       var generatorName = "\$${className}Generator()";
@@ -21,9 +24,10 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
       var pathResult = pathSource.replaceAll("lib", "../../..");
       pathResult = pathResult.replaceAll(underScoreName, "$underScoreName.gen");
       var importResult = "import \"$pathResult\";\n";
-      DataGen.listPaths.add(importResult);
-      DataGen.listRefs.add(generatorName);
-      return """
+      DataGen.listImports.add(importResult);
+      DataGen.listGenerators.add(generatorName);
+      DataGen.listRoutes.add(
+          """
 import 'package:flutter/material.dart';
 import '../../../../app/presentation/router/app_route_generator.dart';
 import '${underScoreName}.dart';
@@ -41,8 +45,12 @@ class \$${className}Generator implements RouteGenerator {
   }
 }
       
-    """;
+    """
+      );
+      return null;
     }
     return null;
   }
 }
+
+
