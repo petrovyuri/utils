@@ -13,24 +13,23 @@ class RoutersGenerator extends GeneratorForAnnotation<Routed> {
       Element? element, ConstantReader annotation, BuildStep buildStep) {
     if (element == null) return null;
     if (element.kind == ElementKind.CLASS && element.name != null) {
+
       var className = "${element.name!}";
-      var package = buildStep.inputId.package;
-      var generatorName = "${className}Generator()";
+      var underScoreName = StringUtils.camelCaseToLowerUnderscore(className);
+      var generatorName = "\$${className}Generator()";
       var pathSource = buildStep.inputId.path;
-      pathSource.replaceAll("lib", package);
-      pathSource.replaceAll(className, generatorName);
-      var importResult = "import:package/\"$pathSource\";\n";
+      var pathResult = pathSource.replaceAll("lib", "../../../");
+      pathResult = pathResult.replaceAll(underScoreName, "$pathResult.gen");
+      var importResult = "import:\"$pathResult\";\n";
       DataGen.listPaths.add(importResult);
-      var ref = StringUtils.camelCaseToLowerUnderscore(className);
-      if (DataGen.listRefs.contains(ref)) return null;
       DataGen.listRefs.add(generatorName);
       return """
 import 'package:flutter/material.dart';
 import '../../../../app/presentation/router/app_route_generator.dart';
-import '${ref}.dart';
+import '${underScoreName}.dart';
           
 class \$${className}Generator implements RouteGenerator {
-  String routeName = \"$ref\";
+  String routeName = \"$underScoreName\";
   
   @override
   Route? onGenerateRoute(RouteSettings settings) {
