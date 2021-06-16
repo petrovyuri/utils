@@ -36,8 +36,6 @@ class \$${className}Generator implements RouteGenerator {
       
     """;
     }
-
     return null;
   }
 }
-
